@@ -6,17 +6,16 @@ import 'package:dalel_app/features/splash_onBoarding/presentation/screens/onBoar
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class splashScreen extends StatefulWidget {
-  static const String routeName = 'splashScreen' ;
+class SplashScreen extends StatefulWidget {
+  static const String routeName = 'splashScreen';
 
-  const splashScreen({super.key});
-
+  const SplashScreen({super.key});
 
   @override
-  _splashScreenState createState() => _splashScreenState();
+  _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _splashScreenState extends State<splashScreen> {
+class _SplashScreenState extends State<SplashScreen> {
   bool _a = false;
 
   @override
@@ -28,8 +27,11 @@ class _splashScreenState extends State<splashScreen> {
       });
     });
     Timer(const Duration(milliseconds: 2000), () {
-      Navigator.of(context)
-          .pushReplacement(SlideTransitionAnimation(onBoarding()));
+      Navigator.of(context).pushReplacement(
+        SlideTransitionAnimation(
+          const OnBoardingScreen(),
+        ),
+      );
     });
   }
 
@@ -40,24 +42,25 @@ class _splashScreenState extends State<splashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    double _height = MediaQuery.of(context).size.height;
-    double _width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       body: Stack(
         children: [
           AnimatedContainer(
-            duration: Duration(milliseconds: 2000),
+            duration: const Duration(milliseconds: 2000),
             curve: Curves.fastLinearToSlowEaseIn,
-            width: _a ? _width : 0,
-            height: _height,
+            width: _a ? width : 0,
+            height: height,
             color: AppColors.backgroundColor,
           ),
           Center(
             child: Text(
               AppStrings.appName,
-              style: GoogleFonts.pacifico(color: AppColors.primaryColor,fontSize: 60)
+              style: GoogleFonts.pacifico(
+                  color: AppColors.primaryColor, fontSize: 60),
             ),
           ),
         ],
@@ -71,19 +74,21 @@ class SlideTransitionAnimation extends PageRouteBuilder {
 
   SlideTransitionAnimation(this.page)
       : super(
-            pageBuilder: (context, animation, anotherAnimation) => page,
-            transitionDuration: const Duration(milliseconds: 2000),
-            transitionsBuilder: (context, animation, anotherAnimation, child) {
-              animation = CurvedAnimation(
-                curve: Curves.fastLinearToSlowEaseIn,
-                parent: animation,
-              );
-              return SlideTransition(
-                position: Tween(begin: const Offset(1.0, 0.0), end:const Offset(0.0, 0.0))
-                    .animate(animation),
-                textDirection: TextDirection.ltr,
-                child: page,
-              );
-            });
+          pageBuilder: (context, animation, anotherAnimation) => page,
+          transitionDuration: const Duration(milliseconds: 2000),
+          transitionsBuilder: (context, animation, anotherAnimation, child) {
+            animation = CurvedAnimation(
+              curve: Curves.fastLinearToSlowEaseIn,
+              parent: animation,
+            );
+            return SlideTransition(
+              position: Tween(
+                      begin: const Offset(1.0, 0.0),
+                      end: const Offset(0.0, 0.0))
+                  .animate(animation),
+              textDirection: TextDirection.ltr,
+              child: page,
+            );
+          },
+        );
 }
-

@@ -1,5 +1,3 @@
 import 'package:flutter/material.dart';
 
-ThemeData AppTheme ()=> ThemeData(
-
-    );
+ThemeData AppTheme()=> ThemeData();
