@@ -2,17 +2,16 @@ import 'package:dalel_app/features/splash_onBoarding/presentation/screens/splash
 import 'package:flutter/material.dart';
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
 
   @override
   Widget build(BuildContext context) {
-    return   MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: splashScreen.routeName,
+      initialRoute: SplashScreen.routeName,
       routes: {
-        splashScreen.routeName : (context) => splashScreen(),
-
-
-
+        SplashScreen.routeName : (context) => const SplashScreen(),
       },
     );
   }
