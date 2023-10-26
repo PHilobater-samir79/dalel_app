@@ -1,3 +1,4 @@
+import 'package:dalel_app/core/theme/app_theme.dart';
 import 'package:dalel_app/features/splash_onBoarding/presentation/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: appTheme(),
       initialRoute: SplashScreen.routeName,
       routes: {
         SplashScreen.routeName : (context) => const SplashScreen(),
