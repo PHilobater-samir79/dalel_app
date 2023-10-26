@@ -2,7 +2,7 @@ class AppStrings {
   static const String appName = 'Dalel';
   static const String skip = 'Skip';
   static const String onBoarding1Title =
-      'Explore The history with Dalel in a smart way';
+      'Explore The history with\n Dalel in a smart way';
   static const String onBoarding2Title = 'From every place on earth';
   static const String onBoarding3Title =
       'Using modern AI technology for better user experience';

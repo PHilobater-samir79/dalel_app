@@ -61,7 +61,9 @@ class _SplashScreenState extends State<SplashScreen> {
             child: Text(
               AppStrings.appName,
               style: GoogleFonts.pacifico(
-                  color: AppColors.primaryColor, fontSize: 60),
+                color: AppColors.primaryColor,
+                fontSize: 60,
+              ),
             ),
           ),
         ],
