@@ -12,7 +12,7 @@ class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
   @override
-  _SplashScreenState createState() => _SplashScreenState();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
 class _SplashScreenState extends State<SplashScreen> {
@@ -26,6 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
         _a = !_a;
       });
     });
+
     Timer(const Duration(milliseconds: 2000), () {
       Navigator.of(context).pushReplacement(
         SlideTransitionAnimation(
@@ -83,9 +84,9 @@ class SlideTransitionAnimation extends PageRouteBuilder {
             );
             return SlideTransition(
               position: Tween(
-                      begin: const Offset(1.0, 0.0),
-                      end: const Offset(0.0, 0.0))
-                  .animate(animation),
+                begin: const Offset(1.0, 0.0),
+                end: const Offset(0.0, 0.0),
+              ).animate(animation),
               textDirection: TextDirection.ltr,
               child: page,
             );
