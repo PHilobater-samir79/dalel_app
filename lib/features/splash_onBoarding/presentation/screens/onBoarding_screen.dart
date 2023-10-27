@@ -1,10 +1,10 @@
 import 'package:dalel_app/core/app_assets.dart';
 import 'package:dalel_app/core/app_color.dart';
 import 'package:dalel_app/core/app_strings.dart';
+import 'package:dalel_app/features/Auth/presentation/screens/login/login_screen.dart';
+import 'package:dalel_app/features/Auth/presentation/screens/sign_up/sign_up_screen.dart';
 import 'package:dalel_app/features/splash_onBoarding/model/onboarding_model.dart';
 import 'package:dalel_app/features/splash_onBoarding/presentation/wigdets/app_main_button.dart';
-import 'package:dalel_app/features_auth/login/login_screen.dart';
-import 'package:dalel_app/features_auth/sign_up/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -55,8 +55,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 (route) => false,
               );
             },
+
             child: Text(
-              "Skip",
+              isLast? '' : "Skip" ,
               style: GoogleFonts.poppins(
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
@@ -69,6 +70,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Expanded(
               child: PageView.builder(
@@ -97,6 +99,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   }
 
   buildBoardingItem(OnBoardingMode onBoardingModel) => Column(
+    mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Expanded(
             child: Image(
@@ -142,8 +145,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           AppMainButton(
             voidCallback: () {
               if (isLast) {
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const SignUpScreen()),
+                Navigator.of(context).pushReplacementNamed(
+                  SignUpScreen.routeName,
                 );
               } else {
                 onBoardingController.nextPage(
@@ -159,10 +162,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           if (isLast)
             TextButton(
               onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const LoginScreen(),
-                  ),
+                Navigator.of(context).pushReplacementNamed(
+                  LoginScreen.routeName
                 );
               },
               child: Text(

@@ -5,5 +5,16 @@ ThemeData appTheme()=> ThemeData(
   appBarTheme: AppBarTheme(
     color: AppColors.backgroundColor,
     elevation: 0.0,
+  ),
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ButtonStyle(
+      backgroundColor: MaterialStateProperty.all(AppColors.primaryColor),
+      shape: MaterialStateProperty.all(RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+
+      )),
+
+
+    )
   )
 );
