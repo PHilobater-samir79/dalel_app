@@ -50,14 +50,13 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const SignUpScreen(),
+                  builder: (context) => const LoginScreen(),
                 ),
                 (route) => false,
               );
             },
-
             child: Text(
-              isLast? '' : "Skip" ,
+              isLast ? '' : "Skip",
               style: GoogleFonts.poppins(
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
@@ -70,14 +69,14 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Expanded(
               child: PageView.builder(
                 controller: onBoardingController,
                 physics: const BouncingScrollPhysics(),
-                itemBuilder: (context, index) =>
-                    buildBoardingItem(onBoarding[index]),
+                itemBuilder: (context, index) {  return buildBoardingItem(onBoarding[index]);
+                },
                 itemCount: onBoarding.length,
                 onPageChanged: (index) {
                   if (index == onBoarding.length - 1) {
@@ -98,83 +97,90 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     );
   }
 
-  buildBoardingItem(OnBoardingMode onBoardingModel) => Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Expanded(
-            child: Image(
-              image: AssetImage(onBoardingModel.image!),
+  buildBoardingItem(OnBoardingMode onBoardingModel) => Center(
+    child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Expanded(
+              child: Image(
+                image: AssetImage(onBoardingModel.image!),
+              ),
             ),
-          ),
-          SmoothPageIndicator(
-            controller: onBoardingController,
-            count: onBoarding.length,
-            effect: WormEffect(
-              dotColor: AppColors.greyTextColor,
-              dotHeight: 15,
-              dotWidth: 15,
-              spacing: 5,
-              activeDotColor: AppColors.darkBrown,
+            const SizedBox(
+              height: 20,
             ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Text(
-            onBoardingModel.title!,
-            style: GoogleFonts.poppins(
-              fontSize: 24,
-              fontWeight: FontWeight.w500,
+
+            SmoothPageIndicator(
+              controller: onBoardingController,
+              count: onBoarding.length,
+              effect: WormEffect(
+                dotColor: AppColors.greyTextColor,
+                dotHeight: 15,
+                dotWidth: 15,
+                spacing: 5,
+                activeDotColor: AppColors.darkBrown,
+              ),
             ),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Text(
-            onBoardingModel.description!,
-            style: GoogleFonts.poppins(
-              fontSize: 16,
-              fontWeight: FontWeight.w300,
+            const SizedBox(
+              height: 20,
             ),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          AppMainButton(
-            voidCallback: () {
-              if (isLast) {
-                Navigator.of(context).pushReplacementNamed(
-                  SignUpScreen.routeName,
-                );
-              } else {
-                onBoardingController.nextPage(
-                  duration: const Duration(
-                    milliseconds: 750,
-                  ),
-                  curve: Curves.fastEaseInToSlowEaseOut,
-                );
-              }
-            },
-            text: isLast ? "Create Account" : "Next",
-          ),
-          if (isLast)
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pushReplacementNamed(
-                  LoginScreen.routeName
-                );
-              },
+            Text(
+              onBoardingModel.title!,
+              style: GoogleFonts.poppins(
+                fontSize: 24,
+                fontWeight: FontWeight.w500,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            Expanded(
               child: Text(
-                "Login Now",
+                onBoardingModel.description!,
                 style: GoogleFonts.poppins(
                   fontSize: 16,
-                  fontWeight: FontWeight.w400,
-                  color: const Color(0xFF6F6460),
+                  fontWeight: FontWeight.w300,
                 ),
+                textAlign: TextAlign.center,
               ),
-            )
-        ],
-      );
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            AppMainButton(
+              voidCallback: () {
+                if (isLast) {
+                  Navigator.of(context).pushReplacementNamed(
+                    SignUpScreen.routeName,
+                  );
+                } else {
+                  onBoardingController.nextPage(
+                    duration: const Duration(
+                      milliseconds: 750,
+                    ),
+                    curve: Curves.fastEaseInToSlowEaseOut,
+                  );
+                }
+              },
+              text: isLast ? "Create Account" : "Next",
+            ),
+            if (isLast)
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context)
+                      .pushReplacementNamed(LoginScreen.routeName);
+                },
+                child: Text(
+                  "Login Now",
+                  style: GoogleFonts.poppins(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                    color: const Color(0xFF6F6460),
+                  ),
+                ),
+              )
+          ],
+        ),
+  );
 }
