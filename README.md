@@ -1,1 +1,0 @@
-# dalel_app
