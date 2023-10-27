@@ -47,12 +47,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         actions: [
           TextButton(
             onPressed: () {
-              Navigator.pushAndRemoveUntil(
-                context,
+              Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => const LoginScreen(),
                 ),
-                (route) => false,
               );
             },
             child: Text(
@@ -75,7 +73,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               child: PageView.builder(
                 controller: onBoardingController,
                 physics: const BouncingScrollPhysics(),
-                itemBuilder: (context, index) {  return buildBoardingItem(onBoarding[index]);
+                itemBuilder: (context, index) {
+                  return buildBoardingItem(onBoarding[index]);
                 },
                 itemCount: onBoarding.length,
                 onPageChanged: (index) {
@@ -98,7 +97,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   }
 
   buildBoardingItem(OnBoardingMode onBoardingModel) => Center(
-    child: Column(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Expanded(
@@ -109,7 +108,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             const SizedBox(
               height: 20,
             ),
-
             SmoothPageIndicator(
               controller: onBoardingController,
               count: onBoarding.length,
@@ -182,5 +180,5 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               )
           ],
         ),
-  );
+      );
 }

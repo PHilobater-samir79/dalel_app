@@ -1,20 +1,19 @@
 import 'package:dalel_app/core/app_color.dart';
 import 'package:flutter/material.dart';
 
-ThemeData appTheme()=> ThemeData(
-  appBarTheme: AppBarTheme(
-    color: AppColors.backgroundColor,
-    elevation: 0.0,
-  ),
-  elevatedButtonTheme: ElevatedButtonThemeData(
-    style: ButtonStyle(
-      backgroundColor: MaterialStateProperty.all(AppColors.primaryColor),
-      shape: MaterialStateProperty.all(RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
-
-      )),
-
-
-    )
-  )
-);
+ThemeData appTheme() => ThemeData(
+      appBarTheme: AppBarTheme(
+        color: AppColors.backgroundColor,
+        elevation: 0.0,
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all(AppColors.primaryColor),
+          shape: MaterialStateProperty.all(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+          ),
+        ),
+      ),
+    );
